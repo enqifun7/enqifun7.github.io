@@ -1,0 +1,240 @@
+:root {
+  --bg: #f5faf5;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #52606d;
+  --primary: #2f855a;
+  --primary-dark: #276749;
+  --border: #d9e6d9;
+  --shadow: 0 10px 30px rgba(47, 133, 90, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--primary-dark);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-menu a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  color: var(--primary);
+}
+
+.hero-section {
+  padding: 60px 0 40px;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.hero-text h1 {
+  margin: 0 0 16px;
+  font-size: clamp(2.4rem, 3.8vw, 3.6rem);
+}
+
+.hero-text p {
+  margin: 0 0 24px;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.primary-btn {
+  border: none;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: var(--primary-dark);
+}
+
+.hero-card,
+.input-card,
+.result-card,
+.feature-card,
+.example-card,
+.about-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.hero-card h2,
+.feature-card h4,
+.example-card h4,
+.result-card h3 {
+  margin-top: 0;
+}
+
+.hero-card ul {
+  padding-left: 20px;
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+
+.section-title {
+  text-align: center;
+  padding: 0 0 24px;
+}
+
+.section-title h2 {
+  margin-bottom: 12px;
+}
+
+.input-section,
+.features-section,
+.examples-section,
+.about-section {
+  padding: 40px 0;
+}
+
+.form-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.input-card label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.input-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+}
+
+.result-area {
+  min-height: 320px;
+}
+
+.meal-block {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 16px;
+  background: #f8fdf8;
+}
+
+.meal-block h4 {
+  margin: 0 0 10px;
+}
+
+.cards-grid,
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.feature-card,
+.example-card {
+  min-height: 170px;
+}
+
+.feature-card p,
+.example-card p,
+.about-content p {
+  margin: 12px 0 0;
+  color: var(--muted);
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.site-footer {
+  padding: 20px 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.footer-inner {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .hero-content,
+  .form-wrapper,
+  .cards-grid,
+  .examples-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
