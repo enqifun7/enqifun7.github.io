@@ -1,130 +1,567 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>饮食推荐助手</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">饮食推荐助手</div>
-      <nav class="nav-menu">
-        <a href="#hero">首页</a>
-        <a href="#features">功能介绍</a>
-        <a href="#examples">示例推荐</a>
-        <a href="#about">关于</a>
-      </nav>
-    </div>
-  </header>
+:root {
+  --bg: #11120f;
+  --surface: rgba(255, 255, 255, 0.12);
+  --surface-strong: #faf6f0;
+  --text: #f4efe6;
+  --muted: #b8b5aa;
+  --accent: #f4b84d;
+  --accent-soft: #ffddb3;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  --border: rgba(255, 255, 255, 0.12);
+  --radius: 28px;
+}
 
-  <main>
-    <section id="hero" class="hero-section">
-      <div class="container hero-content">
-        <div class="hero-text">
-          <h1>今天吃什么？</h1>
-          <p>输入你的口味、预算和健康偏好，快速生成一日三餐饮食推荐。</p>
-          <button id="scrollToForm" class="primary-btn">开始生成推荐</button>
-        </div>
-        <div class="hero-card">
-          <h2>快速推荐</h2>
-          <p>早餐、午餐、晚餐，一页搞定。</p>
-          <ul>
-            <li>适合大学生和上班族</li>
-            <li>不接入外卖、不做登录</li>
-            <li>简单好用，节省决策时间</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+* {
+  box-sizing: border-box;
+}
 
-    <section id="input" class="input-section">
-      <div class="container section-title">
-        <h2>告诉我们你的饮食需求</h2>
-        <p>填写简单需求，点击生成即可获得今日饮食方案。</p>
-      </div>
-      <div class="container form-wrapper">
-        <div class="input-card">
-          <label for="taste">口味偏好</label>
-          <input id="taste" type="text" placeholder="例如：想吃清淡、辣味" />
+html {
+  scroll-behavior: smooth;
+}
 
-          <label for="budget">预算</label>
-          <input id="budget" type="text" placeholder="例如：预算20元" />
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(244, 184, 77, 0.16), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(255, 221, 179, 0.16), transparent 18%),
+    #11120f;
+  color: var(--text);
+  font-family: "Segoe UI Variable", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  line-height: 1.7;
+}
 
-          <label for="health">健康需求</label>
-          <input id="health" type="text" placeholder="例如：减脂、少油、营养均衡" />
+img,
+button,
+input {
+  max-width: 100%;
+}
 
-          <button id="generateBtn" class="primary-btn">生成推荐</button>
-        </div>
-        <div class="result-card" aria-live="polite">
-          <h3>推荐结果</h3>
-          <div id="resultArea" class="result-area">
-            <p>请输入饮食需求并点击“生成推荐”。</p>
-          </div>
-        </div>
-      </div>
-    </section>
+button {
+  font: inherit;
+}
 
-    <section id="features" class="features-section">
-      <div class="container section-title">
-        <h2>功能介绍</h2>
-        <p>我们专注于让你快速解决“吃什么”的问题。</p>
-      </div>
-      <div class="container cards-grid">
-        <div class="feature-card">
-          <h4>快速输入</h4>
-          <p>口味、预算、健康需求，三个字段即可生成推荐。</p>
-        </div>
-        <div class="feature-card">
-          <h4>一日三餐建议</h4>
-          <p>直接返回早餐/午餐/晚餐方案，减少选择焦虑。</p>
-        </div>
-        <div class="feature-card">
-          <h4>示例引导</h4>
-          <p>提供常见场景示例，帮助你快速上手。</p>
-        </div>
-      </div>
-    </section>
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    <section id="examples" class="examples-section">
-      <div class="container section-title">
-        <h2>示例推荐</h2>
-        <p>你可以参考以下输入方式，快速生成饮食方案。</p>
-      </div>
-      <div class="container examples-grid">
-        <div class="example-card">
-          <h4>清淡健康</h4>
-          <p>口味：清淡；预算：25元；健康：低脂</p>
-        </div>
-        <div class="example-card">
-          <h4>学生食堂</h4>
-          <p>口味：家常；预算：20元；健康：营养均衡</p>
-        </div>
-        <div class="example-card">
-          <h4>快速加班</h4>
-          <p>口味：微辣；预算：30元；健康：高蛋白</p>
-        </div>
-      </div>
-    </section>
+.container {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+}
 
-    <section id="about" class="about-section">
-      <div class="container section-title">
-        <h2>关于本项目</h2>
-        <p>我们希望用简单的页面帮助用户减少“吃什么”的决策时间。</p>
-      </div>
-      <div class="container about-content">
-        <p>本项目为课堂小项目原型展示，重点在于需求输入、推荐结果展示和页面交互体验。我们不接入真实外卖平台，不支持用户登录，不进行复杂营养计算。</p>
-      </div>
-    </section>
-  </main>
+.page-shell {
+  position: relative;
+}
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>饮食推荐助手 | 适合大学生与上班族的快速饮食方案生成工具</p>
-    </div>
-  </footer>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(16px);
+  background: rgba(17, 18, 15, 0.82);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 16px;
+  background: rgba(244, 184, 77, 0.18);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.nav-menu a {
+  color: var(--muted);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--accent);
+}
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding: 96px 0 80px;
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(244, 184, 77, 0.25), transparent 15%),
+    radial-gradient(circle at 80% 10%, rgba(255, 221, 179, 0.2), transparent 18%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.hero-copy {
+  max-width: 560px;
+  z-index: 1;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(3rem, 5vw, 4.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.hero-description {
+  margin: 24px 0 32px;
+  max-width: 540px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.primary-btn {
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f4b84d, #ffca72);
+  color: #11120f;
+  padding: 16px 28px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 18px 30px rgba(244, 184, 77, 0.24);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 36px rgba(244, 184, 77, 0.28);
+}
+
+.secondary-link {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 14px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.hero-stats div {
+  padding: 18px 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-stats strong {
+  display: block;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.hero-stats span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.hero-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-panel-card {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--shadow);
+}
+
+.panel-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(244, 184, 77, 0.18);
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.hero-panel-card h2 {
+  margin: 0 0 16px;
+  font-size: 2.2rem;
+}
+
+.hero-panel-card p {
+  margin: 0 0 24px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.panel-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.panel-grid div {
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.panel-grid strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.hero-accent {
+  position: absolute;
+  inset: -20px -30px -40px 40px;
+  background: radial-gradient(circle at top right, rgba(244, 184, 77, 0.2), transparent 42%);
+  pointer-events: none;
+}
+
+.input-section,
+.features-section,
+.examples-section,
+.about-section {
+  position: relative;
+  z-index: 1;
+  padding: 80px 0;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.section-head h2 {
+  margin: 16px auto 0;
+  max-width: 680px;
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.section-head p {
+  margin: 18px auto 0;
+  color: var(--muted);
+  max-width: 620px;
+  line-height: 1.7;
+}
+
+.input-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+.input-card h3,
+.result-header h3,
+.about-card h3 {
+  margin-top: 0;
+}
+
+.input-card p,
+.result-header span,
+.about-card ul {
+  color: var(--muted);
+}
+
+.input-card label {
+  display: block;
+  margin: 26px 0 10px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.input-card input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  padding: 16px 18px;
+  border-radius: 18px;
+  outline: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.input-card input:focus {
+  border-color: rgba(244, 184, 77, 0.75);
+  transform: translateY(-1px);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(244, 184, 77, 0.18);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.result-area {
+  min-height: 360px;
+  margin-top: 24px;
+}
+
+.result-tip,
+.result-area p {
+  color: var(--muted);
+}
+
+.meal-block {
+  padding: 20px 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 18px;
+}
+
+.meal-block h4 {
+  margin: 0 0 12px;
+  color: #fff;
+}
+
+.meal-block p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.feature-card {
+  padding: 32px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(244, 184, 77, 0.25);
+}
+
+.feature-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: rgba(244, 184, 77, 0.14);
+  color: var(--accent);
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.feature-card h4 {
+  margin: 0 0 14px;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.examples-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.example-card {
+  padding: 28px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.example-card h4 {
+  margin: 0 0 12px;
+}
+
+.example-card p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.sample-button {
+  margin-top: 20px;
+  border: none;
+  background: rgba(244, 184, 77, 0.15);
+  color: var(--accent);
+  padding: 14px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.sample-button:hover {
+  transform: translateY(-2px);
+  background: rgba(244, 184, 77, 0.22);
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.about-copy h2 {
+  margin: 12px 0 20px;
+}
+
+.about-copy p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.about-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-card li {
+  margin-bottom: 14px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.about-card li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.site-footer {
+  padding: 30px 0 40px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.footer-inner {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 18px;
+}
+
+@media (max-width: 980px) {
+  .hero-grid,
+  .input-layout,
+  .feature-grid,
+  .examples-grid,
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-menu {
+    justify-content: flex-start;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .secondary-link {
+    width: fit-content;
+  }
+}
