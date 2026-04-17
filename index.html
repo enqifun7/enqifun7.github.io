@@ -1,567 +1,183 @@
-:root {
-  --bg: #11120f;
-  --surface: rgba(255, 255, 255, 0.12);
-  --surface-strong: #faf6f0;
-  --text: #f4efe6;
-  --muted: #b8b5aa;
-  --accent: #f4b84d;
-  --accent-soft: #ffddb3;
-  --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
-  --border: rgba(255, 255, 255, 0.12);
-  --radius: 28px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at top left, rgba(244, 184, 77, 0.16), transparent 25%),
-    radial-gradient(circle at bottom right, rgba(255, 221, 179, 0.16), transparent 18%),
-    #11120f;
-  color: var(--text);
-  font-family: "Segoe UI Variable", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
-  line-height: 1.7;
-}
-
-img,
-button,
-input {
-  max-width: 100%;
-}
-
-button {
-  font: inherit;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.container {
-  width: min(1180px, calc(100% - 36px));
-  margin: 0 auto;
-}
-
-.page-shell {
-  position: relative;
-}
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  backdrop-filter: blur(16px);
-  background: rgba(17, 18, 15, 0.82);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 20px 0;
-}
-
-.logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 16px;
-  background: rgba(244, 184, 77, 0.18);
-}
-
-.nav-menu {
-  display: flex;
-  gap: 26px;
-  flex-wrap: wrap;
-}
-
-.nav-menu a {
-  color: var(--muted);
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.nav-menu a:hover {
-  color: var(--accent);
-}
-
-.hero-section {
-  position: relative;
-  overflow: hidden;
-  padding: 96px 0 80px;
-}
-
-.hero-backdrop {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(244, 184, 77, 0.25), transparent 15%),
-    radial-gradient(circle at 80% 10%, rgba(255, 221, 179, 0.2), transparent 18%);
-  pointer-events: none;
-}
-
-.hero-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.2fr 0.9fr;
-  gap: 32px;
-  align-items: center;
-}
-
-.hero-copy {
-  max-width: 560px;
-  z-index: 1;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.78rem;
-  color: var(--accent);
-  margin-bottom: 18px;
-}
-
-.hero-copy h1 {
-  margin: 0;
-  font-size: clamp(3rem, 5vw, 4.8rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-}
-
-.hero-description {
-  margin: 24px 0 32px;
-  max-width: 540px;
-  color: var(--muted);
-  font-size: 1.05rem;
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-
-.primary-btn {
-  border: none;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #f4b84d, #ffca72);
-  color: #11120f;
-  padding: 16px 28px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  box-shadow: 0 18px 30px rgba(244, 184, 77, 0.24);
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.primary-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 22px 36px rgba(244, 184, 77, 0.28);
-}
-
-.secondary-link {
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.08);
-  padding: 14px 20px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 42px;
-}
-
-.hero-stats div {
-  padding: 18px 20px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.hero-stats strong {
-  display: block;
-  font-size: 1.8rem;
-  color: #fff;
-}
-
-.hero-stats span {
-  display: block;
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
-.hero-panel {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-panel-card {
-  position: relative;
-  overflow: hidden;
-  padding: 32px;
-  border-radius: 32px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: var(--shadow);
-}
-
-.panel-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(244, 184, 77, 0.18);
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 18px;
-}
-
-.hero-panel-card h2 {
-  margin: 0 0 16px;
-  font-size: 2.2rem;
-}
-
-.hero-panel-card p {
-  margin: 0 0 24px;
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-.panel-grid {
-  display: grid;
-  gap: 18px;
-}
-
-.panel-grid div {
-  padding: 18px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.panel-grid strong {
-  display: block;
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.hero-accent {
-  position: absolute;
-  inset: -20px -30px -40px 40px;
-  background: radial-gradient(circle at top right, rgba(244, 184, 77, 0.2), transparent 42%);
-  pointer-events: none;
-}
-
-.input-section,
-.features-section,
-.examples-section,
-.about-section {
-  position: relative;
-  z-index: 1;
-  padding: 80px 0;
-}
-
-.section-head {
-  text-align: center;
-  margin-bottom: 42px;
-}
-
-.section-head h2 {
-  margin: 16px auto 0;
-  max-width: 680px;
-  font-size: clamp(2rem, 3vw, 3rem);
-}
-
-.section-head p {
-  margin: 18px auto 0;
-  color: var(--muted);
-  max-width: 620px;
-  line-height: 1.7;
-}
-
-.input-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  align-items: start;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-  box-shadow: var(--shadow);
-  border-radius: var(--radius);
-  padding: 32px;
-}
-
-.input-card h3,
-.result-header h3,
-.about-card h3 {
-  margin-top: 0;
-}
-
-.input-card p,
-.result-header span,
-.about-card ul {
-  color: var(--muted);
-}
-
-.input-card label {
-  display: block;
-  margin: 26px 0 10px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.input-card input {
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  padding: 16px 18px;
-  border-radius: 18px;
-  outline: none;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.input-card input:focus {
-  border-color: rgba(244, 184, 77, 0.75);
-  transform: translateY(-1px);
-}
-
-.result-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(244, 184, 77, 0.18);
-  color: var(--accent);
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.result-area {
-  min-height: 360px;
-  margin-top: 24px;
-}
-
-.result-tip,
-.result-area p {
-  color: var(--muted);
-}
-
-.meal-block {
-  padding: 20px 22px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 18px;
-}
-
-.meal-block h4 {
-  margin: 0 0 12px;
-  color: #fff;
-}
-
-.meal-block p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.feature-card {
-  padding: 32px;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(244, 184, 77, 0.25);
-}
-
-.feature-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  background: rgba(244, 184, 77, 0.14);
-  color: var(--accent);
-  font-weight: 800;
-  margin-bottom: 18px;
-}
-
-.feature-card h4 {
-  margin: 0 0 14px;
-}
-
-.feature-card p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.examples-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.example-card {
-  padding: 28px;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.example-card h4 {
-  margin: 0 0 12px;
-}
-
-.example-card p {
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-.sample-button {
-  margin-top: 20px;
-  border: none;
-  background: rgba(244, 184, 77, 0.15);
-  color: var(--accent);
-  padding: 14px 18px;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.sample-button:hover {
-  transform: translateY(-2px);
-  background: rgba(244, 184, 77, 0.22);
-}
-
-.about-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 28px;
-  align-items: start;
-}
-
-.about-copy h2 {
-  margin: 12px 0 20px;
-}
-
-.about-copy p {
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.about-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.about-card li {
-  margin-bottom: 14px;
-  padding-left: 20px;
-  position: relative;
-}
-
-.about-card li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-}
-
-.site-footer {
-  padding: 30px 0 40px;
-  text-align: center;
-  color: var(--muted);
-}
-
-.footer-inner {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 18px;
-}
-
-@media (max-width: 980px) {
-  .hero-grid,
-  .input-layout,
-  .feature-grid,
-  .examples-grid,
-  .about-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-stats {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 680px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-menu {
-    justify-content: flex-start;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hero-actions .secondary-link {
-    width: fit-content;
-  }
-}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>饮食推荐助手</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="logo">
+          <span class="logo-mark">🍱</span>
+          饮食推荐助手
+        </div>
+        <nav class="nav-menu">
+          <a href="#hero">首页</a>
+          <a href="#input">输入需求</a>
+          <a href="#examples">示例方案</a>
+          <a href="#about">关于</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero-section">
+        <div class="hero-backdrop"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">快速决定今日三餐</p>
+            <h1>今天吃什么？</h1>
+            <p class="hero-description">为大学生和上班族提供简单直观的饮食推荐体验，根据口味、预算和健康需求，生成可执行的一日三餐方案。</p>
+            <div class="hero-actions">
+              <button id="scrollToForm" class="primary-btn">开始生成推荐</button>
+              <a href="#examples" class="secondary-link">查看示例方案</a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <strong>3</strong>
+                <span>步完成</span>
+              </div>
+              <div>
+                <strong>1</strong>
+                <span>页即用</span>
+              </div>
+              <div>
+                <strong>0</strong>
+                <span>外卖平台</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panel">
+            <div class="hero-panel-card">
+              <div class="panel-tag">今日推荐</div>
+              <h2>清晨、午后、夜宵</h2>
+              <p>只需输入偏好，我们会生成符合你当日需求的“早餐、午餐、晚餐”完整方案。</p>
+              <div class="panel-grid">
+                <div>
+                  <strong>适用人群</strong>
+                  <p>大学生 / 白领</p>
+                </div>
+                <div>
+                  <strong>核心价值</strong>
+                  <p>省时、健康、可操作</p>
+                </div>
+              </div>
+            </div>
+            <div class="hero-accent"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="input" class="input-section">
+        <div class="container section-head">
+          <p class="eyebrow">输入需求</p>
+          <h2>告诉我们你的今天口味</h2>
+          <p>3 个简单选项，即可获得今日的饮食建议。</p>
+        </div>
+        <div class="container input-layout">
+          <div class="input-card glass-card">
+            <h3>你的饮食偏好</h3>
+            <p>填写口味、预算或健康目标，支持模糊描述。</p>
+            <label for="taste">口味偏好</label>
+            <input id="taste" type="text" placeholder="例如：想吃清淡、微辣、酸甜" />
+            <label for="budget">预算</label>
+            <input id="budget" type="text" placeholder="例如：预算20元" />
+            <label for="health">健康需求</label>
+            <input id="health" type="text" placeholder="例如：减脂、少油、营养均衡" />
+            <button id="generateBtn" class="primary-btn">生成推荐</button>
+          </div>
+
+          <div class="result-card glass-card" aria-live="polite">
+            <div class="result-header">
+              <h3>推荐结果</h3>
+              <span class="badge">实时生成</span>
+            </div>
+            <div id="resultArea" class="result-area">
+              <p class="result-tip">输入偏好后，点击“生成推荐”，即可得到早餐、午餐、晚餐建议。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features-section">
+        <div class="container section-head">
+          <p class="eyebrow">功能亮点</p>
+          <h2>我们解决了哪几个核心痛点</h2>
+        </div>
+        <div class="container feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">1</div>
+            <h4>快速决策</h4>
+            <p>减少每天“吃什么”的纠结，用一个页面完成饮食方案生成。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">2</div>
+            <h4>清晰结果</h4>
+            <p>早餐、午餐、晚餐分区展示，结果一目了然，易于直接执行。</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">3</div>
+            <h4>示例引导</h4>
+            <p>内置常见场景模板，帮助用户快速输入需求并直接生成方案。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="examples" class="examples-section">
+        <div class="container section-head">
+          <p class="eyebrow">参考场景</p>
+          <h2>常见饮食需求示例</h2>
+          <p>点击下面按钮可以快速填充场景并测试推荐结果。</p>
+        </div>
+        <div class="container examples-grid">
+          <div class="example-card">
+            <h4>清淡健康</h4>
+            <p>口味：清淡；预算：25元；健康：低脂</p>
+            <button type="button" class="sample-button" data-taste="清淡" data-budget="25元" data-health="低脂">使用此示例</button>
+          </div>
+          <div class="example-card">
+            <h4>学生食堂</h4>
+            <p>口味：家常；预算：20元；健康：营养均衡</p>
+            <button type="button" class="sample-button" data-taste="家常" data-budget="20元" data-health="营养均衡">使用此示例</button>
+          </div>
+          <div class="example-card">
+            <h4>加班急速</h4>
+            <p>口味：微辣；预算：30元；健康：高蛋白</p>
+            <button type="button" class="sample-button" data-taste="微辣" data-budget="30元" data-health="高蛋白">使用此示例</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about-section">
+        <div class="container about-layout">
+          <div class="about-copy">
+            <p class="eyebrow">项目说明</p>
+            <h2>课堂原型，不做复杂系统</h2>
+            <p>这是一个轻量的饮食推荐原型，专注于“今日饮食决策”体验。我们不接入外卖平台、不做用户登录，也不做深度营养计算。</p>
+          </div>
+          <div class="about-card glass-card">
+            <h3>设计原则</h3>
+            <ul>
+              <li>操作简单：三个输入项即可完成</li>
+              <li>结果明确：一日三餐分区展示</li>
+              <li>易于演示：页面可用于课堂展示与演示</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>饮食推荐助手 · 大学生 / 上班族日常饮食决策原型</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
