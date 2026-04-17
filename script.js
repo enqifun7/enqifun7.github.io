@@ -2,6 +2,18 @@ const generateBtn = document.getElementById('generateBtn');
 const resultArea = document.getElementById('resultArea');
 const scrollToForm = document.getElementById('scrollToForm');
 const navLinks = document.querySelectorAll('.nav-menu a');
+const sampleButtons = document.querySelectorAll('.sample-button');
+
+const defaultTips = '<p class="result-tip">输入偏好后，点击“生成推荐”，即可得到早餐、午餐、晚餐建议。</p>';
+
+const createMealBlock = (title, text) => {
+  return `
+    <div class="meal-block">
+      <h4>${title}</h4>
+      <p>${text}</p>
+    </div>
+  `;
+};
 
 const generateRecommendation = () => {
   const taste = document.getElementById('taste').value.trim();
@@ -9,7 +21,7 @@ const generateRecommendation = () => {
   const health = document.getElementById('health').value.trim();
 
   if (!taste && !budget && !health) {
-    resultArea.innerHTML = '<p>请先输入至少一项饮食需求，例如口味、预算或健康偏好。</p>';
+    resultArea.innerHTML = '<p class="result-tip">请先输入至少一项饮食需求，例如口味、预算或健康偏好。</p>';
     return;
   }
 
@@ -18,25 +30,23 @@ const generateRecommendation = () => {
   const dinner = `晚餐：可以选择${taste || '家常'}口味的${health ? '蒸鱼+青菜' : '简易炒菜'}。`;
 
   resultArea.innerHTML = `
-    <div class="meal-block">
-      <h4>早餐</h4>
-      <p>${breakfast}</p>
-    </div>
-    <div class="meal-block">
-      <h4>午餐</h4>
-      <p>${lunch}</p>
-    </div>
-    <div class="meal-block">
-      <h4>晚餐</h4>
-      <p>${dinner}</p>
-    </div>
+    ${createMealBlock('早餐', breakfast)}
+    ${createMealBlock('午餐', lunch)}
+    ${createMealBlock('晚餐', dinner)}
   `;
+};
+
+const fillSample = (taste, budget, health) => {
+  document.getElementById('taste').value = taste;
+  document.getElementById('budget').value = budget;
+  document.getElementById('health').value = health;
+  generateRecommendation();
 };
 
 const smoothScroll = (targetId) => {
   const target = document.querySelector(targetId);
   if (target) {
-    window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+    window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
   }
 };
 
@@ -48,4 +58,17 @@ navLinks.forEach((link) => {
     event.preventDefault();
     smoothScroll(link.getAttribute('href'));
   });
+});
+
+sampleButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const taste = button.dataset.taste || '';
+    const budget = button.dataset.budget || '';
+    const health = button.dataset.health || '';
+    fillSample(taste, budget, health);
+  });
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  resultArea.innerHTML = defaultTips;
 });
