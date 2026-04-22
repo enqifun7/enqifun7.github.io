@@ -17,6 +17,8 @@
         <nav class="nav-menu">
           <a href="#hero">首页</a>
           <a href="#input">输入需求</a>
+          <a href="#daily-recipe">今日推荐</a>
+          <a href="#features">外卖点单</a>
           <a href="#examples">示例方案</a>
           <a href="#about">关于</a>
         </nav>
@@ -103,27 +105,95 @@
         </div>
       </section>
 
-      <section id="features" class="features-section">
+
+
+
+
+<section id="features" class="features-section">
         <div class="container section-head">
-          <p class="eyebrow">功能亮点</p>
-          <h2>我们解决了哪几个核心痛点</h2>
+          <p class="eyebrow">专为懒人设计</p >
+          <h2>今日外卖点什么</h2>
+          <p>不想自己动手？让 AI 帮你把上方生成的食谱直接转化为具体的外卖点单建议。</p >
+          <button id="generateTakeoutBtn" class="primary-btn" style="margin-top: 20px; display: none;">一键转化为外卖单</button>
         </div>
-        <div class="container feature-grid">
+        
+        <div class="container feature-grid" id="takeoutArea">
           <article class="feature-card">
-            <div class="feature-icon">1</div>
-            <h4>快速决策</h4>
-            <p>减少每天“吃什么”的纠结，用一个页面完成饮食方案生成。</p>
+            <div class="feature-icon">🥞</div>
+            <h4>早餐外卖</h4>
+            <p>请先在上方生成饮食推荐...</p >
           </article>
           <article class="feature-card">
-            <div class="feature-icon">2</div>
-            <h4>清晰结果</h4>
-            <p>早餐、午餐、晚餐分区展示，结果一目了然，易于直接执行。</p>
+            <div class="feature-icon">🍱</div>
+            <h4>午餐外卖</h4>
+            <p>请先在上方生成饮食推荐...</p >
           </article>
           <article class="feature-card">
-            <div class="feature-icon">3</div>
-            <h4>示例引导</h4>
-            <p>内置常见场景模板，帮助用户快速输入需求并直接生成方案。</p>
+            <div class="feature-icon">🍲</div>
+            <h4>晚餐外卖</h4>
+            <p>请先在上方生成饮食推荐...</p >
           </article>
+        </div>
+      </section>
+
+
+
+      <section id="daily-recipe" class="features-section">
+        <div class="container section-head">
+          <p class="eyebrow">每日推荐</p>
+          <h2>今日食谱推荐</h2>
+          <p>为您准备了精细到食材与步骤的一日三餐建议，并配有当季水果推荐，方便直接购物与烹饪。</p>
+        </div>
+
+        <div class="container recipe-grid">
+          <article class="recipe-card">
+            <div class="recipe-header"><h3>今日食谱 · 轻盈营养日</h3><span class="badge">预算约 25 元 · 约 45 分钟</span></div>
+
+            <div class="meal">
+              <h4>早餐（参考，多选其一）</h4>
+              <ul class="dish-list">
+                <li>燕麦水果碗</li>
+                <li>豆浆 + 包子 / 白煮蛋</li>
+                <li>鸡蛋三明治（鸡蛋/火腿/生菜）</li>
+                <li>皮蛋瘦肉粥 + 小菜</li>
+              </ul>
+            </div>
+
+            <div class="meal">
+              <h4>午餐（参考，多选其一）</h4>
+              <ul class="dish-list">
+                <li>香菇鸡丁炒饭</li>
+                <li>红烧牛肉面 / 牛肉盖饭</li>
+                <li>青菜炒鸡胸 + 白饭</li>
+                <li>学生食堂家常菜拼盘（两荤一素）</li>
+              </ul>
+            </div>
+
+            <div class="meal">
+              <h4>晚餐（参考，多选其一）</h4>
+              <ul class="dish-list">
+                <li>番茄豆腐汤 + 清炒时蔬</li>
+                <li>蒸鱼/清蒸鸡胸 + 小碗米饭</li>
+                <li>麻辣香锅（分量适中）</li>
+                <li>快手拌面/凉拌菜 + 卤蛋</li>
+              </ul>
+            </div>
+
+          </article>
+
+          <aside class="fruit-card">
+            <div class="fruit-head"><h3>当季水果推荐</h3><span class="eyebrow">优选新鲜、季节好价</span></div>
+            <ul class="fruit-list">
+              <li><span class="fruit-badge">🍎</span> 苹果 — 纤维丰富，适合当早餐水果</li>
+              <li><span class="fruit-badge">🍊</span> 柑橘类 — 维生素 C 充足，清新解腻</li>
+              <li><span class="fruit-badge">🥭</span> 芒果/应季热带果 — 香甜可作餐后小点</li>
+              <li><span class="fruit-badge">🍐</span> 梨 — 多汁，适合润肺解渴</li>
+              <li class="fruit-note">提示：可用水果替代早餐蓝莓，或切块加入午/晚餐搭配，提升口感与营养。</li>
+            </ul>
+            <div class="fruit-action">
+              <button class="secondary-link" id="tipsBtn">保存到我的偏好</button>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -156,7 +226,7 @@
         <div class="container about-layout">
           <div class="about-copy">
             <p class="eyebrow">项目说明</p>
-            <h2>课堂原型，不做复杂系统</h2>
+            <h2>关于系统</h2>
             <p>这是一个轻量的饮食推荐原型，专注于“今日饮食决策”体验。我们不接入外卖平台、不做用户登录，也不做深度营养计算。</p>
           </div>
           <div class="about-card glass-card">
